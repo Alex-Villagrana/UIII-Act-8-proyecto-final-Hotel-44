@@ -42,7 +42,7 @@
 
 ## Clientes
 <img width="1829" height="808" alt="image" src="https://github.com/user-attachments/assets/eaf7cf97-7ad2-469c-8074-552859e28bc6" />
-### Crear
+###  Crear
 <img width="1819" height="765" alt="image" src="https://github.com/user-attachments/assets/d69a174f-9148-4c42-b6c6-e70f3cde5d13" />
 
 ### Editar
