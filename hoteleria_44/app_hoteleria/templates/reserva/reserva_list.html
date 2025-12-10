@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Reservas{% endblock %}
+
+{% block content %}
+
+<div class="admin-card" style="max-width: 1100px;">
+    
+    <div class="list-header">
+        <h1>Lista de Reservas</h1>
+        <a href="{% url 'reserva_create' %}" class="btn btn-edit">
+            + Nueva Reserva
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        {% if object_list %}
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th style="width: 60px;">ID</th>
+                        <th>Cliente</th>
+                        <th>Habitación</th>
+                        <th>Entrada</th>
+                        <th>Salida</th>
+                        <th>Estado</th>
+                        <th style="text-align: right;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reserva in object_list %}
+                        <tr>
+                            <td style="font-weight: bold; color: var(--purple-primary);">
+                                #{{ reserva.pk }}
+                            </td>
+                            
+                            <td>
+                                <a href="{% url 'reserva_detail' reserva.pk %}" class="table-link">
+                                    {{ reserva.cliente.nombre }}
+                                </a>
+                            </td>
+                            
+                            <td>
+                                <span style="font-weight: 600;">{{ reserva.habitacion.numero }}</span>
+                            </td>
+                            
+                            <td>{{ reserva.fecha_ingreso|date:"d/m/Y" }}</td>
+                            <td>{{ reserva.fecha_salida|date:"d/m/Y" }}</td>
+                            
+                            <td>
+                                {{ reserva.get_estado_display }}
+                            </td>
+                            
+                            <td style="text-align: right; min-width: 140px;">
+                                <a href="{% url 'reserva_update' reserva.pk %}" class="btn btn-back" style="font-size: 0.8rem; padding: 5px 8px;">
+                                    Editar
+                                </a>
+                                <a href="{% url 'reserva_detail' reserva.pk %}" class="btn btn-edit" style="font-size: 0.8rem; padding: 5px 10px;">
+                                    Ver
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="empty-state">
+                <p>No hay reservas registradas en el sistema.</p>
+                <a href="{% url 'reserva_create' %}" class="btn btn-edit" style="margin-top: 10px;">
+                    Crear la primera reserva
+                </a>
+            </div>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}

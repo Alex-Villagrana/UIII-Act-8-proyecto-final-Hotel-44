@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar Pago{% endblock %}
+
+{% block content %}
+
+<div class="admin-card card-alert">
+    
+    <h1>¿Eliminar Pago?</h1>
+
+    <div class="alert-message">
+        <p>¿Estás seguro de que quieres eliminar el pago <strong>#{{ pago.id_pago }}</strong>?</p>
+        
+        <p style="font-size: 0.9rem; color: var(--text-grey);">
+            Esta acción borrará el registro de la transacción permanentemente.
+        </p>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="center-actions">
+            <button type="submit" class="btn btn-danger-solid">
+                Sí, eliminar
+            </button>
+
+            <a href="{% url 'pago_list' %}" class="btn btn-back">
+                No, cancelar
+            </a>
+        </div>
+    </form>
+
+</div>
+
+{% endblock %}

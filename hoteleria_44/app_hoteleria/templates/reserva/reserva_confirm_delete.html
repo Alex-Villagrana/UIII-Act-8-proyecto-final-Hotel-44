@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Confirmar Eliminación{% endblock %}
+
+{% block content %}
+
+<div class="admin-card card-alert">
+    
+    <h1>¿Eliminar Reserva?</h1>
+
+    <div class="alert-message">
+        <p>¿Estás seguro de que quieres eliminar la reserva <strong>#{{ object.pk }}</strong>?</p>
+        
+        <p style="font-size: 0.9rem; color: var(--text-grey);">
+            Al eliminarla, la habitación asociada quedará disponible nuevamente, pero se perderá el historial de esta transacción.
+        </p>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="center-actions">
+            <button type="submit" class="btn btn-danger-solid">
+                Sí, eliminar
+            </button>
+
+            <a href="{% url 'reserva_detail' object.pk %}" class="btn btn-back">
+                No, cancelar
+            </a>
+        </div>
+    </form>
+
+</div>
+
+{% endblock %}

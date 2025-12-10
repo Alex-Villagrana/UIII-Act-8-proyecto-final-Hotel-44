@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Confirmar Eliminación{% endblock %}
+
+{% block content %}
+
+<div class="admin-card card-alert">
+    
+    <h1>¿Eliminar Habitación?</h1>
+
+    <div class="alert-message">
+        <p>¿Estás seguro de que quieres eliminar la habitación <strong>"{{ object.numero }}"</strong>?</p>
+        
+        <p style="font-size: 0.9rem; color: var(--text-grey);">
+            Esta acción eliminará el registro de la habitación y su historial asociado.
+        </p>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="center-actions">
+            <button type="submit" class="btn btn-danger-solid">
+                Sí, eliminar
+            </button>
+
+            <a href="{% url 'habitacion_detail' object.pk %}" class="btn btn-back">
+                No, cancelar
+            </a>
+        </div>
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if object %}Editar Empleado{% else %}Añadir Empleado{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="admin-card">
+    
+    <h1>
+        {% if object %}Editar Empleado{% else %}Añadir Empleado{% endif %}
+    </h1>
+
+    <form method="post" class="admin-form">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+        
+        <div class="form-actions">
+            <button type="submit" class="btn btn-edit">
+                Guardar
+            </button>
+            
+            <a href="{% url 'empleado_list' %}" class="btn btn-back">
+                Cancelar
+            </a>
+        </div>
+    </form>
+
+</div>
+
+{% endblock %}

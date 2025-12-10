@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inicio - Panel de Administración{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-container">
+
+    <div class="welcome-card admin-card">
+        <h1>Bienvenido al Sistema de Gestión Hotelera</h1>
+        <p class="welcome-text">
+            Panel de control administrativo. Seleccione una opción para comenzar a gestionar.
+        </p>
+        
+        <div class="hero-image-container">
+            <img src="{% static 'image/hotel.png' %}" alt="Vista del Hotel" class="hero-image">
+        </div>
+    </div>
+
+    <div class="dashboard-grid">
+        
+        <a href="{% url 'reserva_list' %}" class="dashboard-item">
+            <div class="icon">📅</div>
+            <h3>Reservas</h3>
+            <p>Gestionar entradas y salidas</p>
+        </a>
+
+        <a href="{% url 'habitacion_list' %}" class="dashboard-item">
+            <div class="icon">🛏️</div>
+            <h3>Habitaciones</h3>
+            <p>Ver disponibilidad y estado</p>
+        </a>
+
+        <a href="{% url 'cliente_list' %}" class="dashboard-item">
+            <div class="icon">👥</div>
+            <h3>Clientes</h3>
+            <p>Directorio de huéspedes</p>
+        </a>
+
+        <a href="{% url 'pago_list' %}" class="dashboard-item">
+            <div class="icon">💵</div>
+            <h3>Pagos</h3>
+            <p>Historial de transacciones</p>
+        </a>
+
+        <a href="{% url 'empleado_list' %}" class="dashboard-item">
+            <div class="icon">👔</div>
+            <h3>Empleados</h3>
+            <p>Gestión de personal</p>
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Detalles de la Reserva{% endblock %}
+
+{% block content %}
+
+<div class="admin-card">
+    
+    <h1>Reserva #{{ object.pk }}</h1>
+
+    <div class="detail-info">
+        
+        <p class="detail-row">
+            <strong>Cliente:</strong>
+            <a href="{% url 'cliente_detail' object.cliente.pk %}" style="color: var(--purple-primary); text-decoration: none; font-weight: 500;">
+                {{ object.cliente.nombre }}
+            </a>
+        </p>
+
+        <p class="detail-row">
+            <strong>Habitación:</strong>
+            <a href="{% url 'habitacion_detail' object.habitacion.pk %}" style="color: var(--purple-primary); text-decoration: none; font-weight: 500;">
+                {{ object.habitacion.numero }}
+            </a>
+        </p>
+
+        <p class="detail-row">
+            <strong>Fecha Entrada:</strong> {{ object.fecha_ingreso }}
+        </p>
+        
+        <p class="detail-row">
+            <strong>Fecha Salida:</strong> {{ object.fecha_salida }}
+        </p>
+        
+        <p class="detail-row">
+            <strong>Estado:</strong> {{ object.get_estado_display }}
+        </p>
+    </div>
+
+    <div class="action-buttons">
+        <a href="{% url 'reserva_update' object.pk %}" class="btn btn-edit">
+            Editar Reserva
+        </a>
+        
+        <a href="{% url 'reserva_delete' object.pk %}" class="btn btn-delete">
+            Eliminar
+        </a>
+
+        <a href="{% url 'reserva_list' %}" class="btn btn-back">
+            &larr; Volver a la lista
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

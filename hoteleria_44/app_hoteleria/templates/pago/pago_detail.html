@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle del Pago{% endblock %}
+
+{% block content %}
+
+<div class="admin-card">
+    
+    <h1>Pago #{{ pago.id_pago }}</h1>
+
+    <div class="detail-info">
+        
+        <p class="detail-row">
+            <strong>Reserva:</strong> {{ pago.reserva }}
+        </p>
+
+        <p class="detail-row">
+            <strong>Monto:</strong> ${{ pago.monto }}
+        </p>
+        
+        <p class="detail-row">
+            <strong>Método pago:</strong> {{ pago.metodo_pago }}
+        </p>
+        
+        <p class="detail-row">
+            <strong>Fecha:</strong> {{ pago.fecha_pago }}
+        </p>
+        
+        <p class="detail-row">
+            <strong>Estado:</strong> {{ pago.estado }}
+        </p>
+    </div>
+
+    <div class="action-buttons">
+        <a href="{% url 'pago_update' pago.id_pago %}" class="btn btn-edit">
+            Editar Pago
+        </a>
+        
+        <a href="{% url 'pago_delete' pago.id_pago %}" class="btn btn-delete">
+            Eliminar
+        </a>
+
+        <a href="{% url 'pago_list' %}" class="btn btn-back">
+            &larr; Volver a la lista
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

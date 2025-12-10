@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Confirmar Eliminación{% endblock %}
+
+{% block content %}
+
+<div class="admin-card card-alert">
+    
+    <h1>¿Eliminar Empleado?</h1>
+
+    <div class="alert-message">
+        <p>¿Estás seguro de que quieres eliminar al empleado <strong>"{{ object.nombre }}"</strong>?</p>
+        <p style="font-size: 0.9rem; color: var(--text-grey);">
+            Esta acción eliminará sus datos del sistema permanentemente.
+        </p>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="center-actions">
+            <button type="submit" class="btn btn-danger-solid">
+                Sí, eliminar
+            </button>
+
+            <a href="{% url 'empleado_detail' object.pk %}" class="btn btn-back">
+                No, cancelar
+            </a>
+        </div>
+    </form>
+
+</div>
+
+{% endblock %}

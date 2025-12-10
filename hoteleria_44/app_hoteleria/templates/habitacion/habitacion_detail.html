@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Detalles de la Habitación{% endblock %}
+
+{% block content %}
+
+<div class="admin-card">
+    
+    <h1>Habitación {{ object.numero }}</h1>
+
+    <div class="detail-info">
+        
+        <p class="detail-row">
+            <strong>ID:</strong> #{{ object.pk }}
+        </p>
+
+        <p class="detail-row">
+            <strong>Tipo:</strong> {{ object.tipo }}
+        </p>
+        
+        <p class="detail-row">
+            <strong>Precio noche:</strong> ${{ object.precio_noche }}
+        </p>
+        
+        <p class="detail-row">
+            <strong>Estado:</strong> {{ object.get_estado_display }}
+        </p>
+    </div>
+
+    <div class="action-buttons">
+        <a href="{% url 'habitacion_update' object.pk %}" class="btn btn-edit">
+            Editar Habitación
+        </a>
+        
+        <a href="{% url 'habitacion_delete' object.pk %}" class="btn btn-delete">
+            Eliminar
+        </a>
+
+        <a href="{% url 'habitacion_list' %}" class="btn btn-back">
+            &larr; Volver a la lista
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

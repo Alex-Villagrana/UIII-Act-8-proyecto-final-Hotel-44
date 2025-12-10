@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Confirmar Eliminación{% endblock %}
+
+{% block content %}
+
+<div class="admin-card card-alert">
+    
+    <h1>¿Eliminar Cliente?</h1>
+
+    <div class="alert-message">
+        <p>¿Estás seguro de que quieres eliminar a <strong>"{{ object.nombre }}"</strong>?</p>
+        <p style="font-size: 0.9rem; color: var(--text-grey);">
+            Esta acción no se puede deshacer.
+        </p>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="center-actions">
+            <button type="submit" class="btn btn-danger-solid">
+                Sí, eliminar
+            </button>
+
+            <a href="{% url 'cliente_detail' object.pk %}" class="btn btn-back">
+                No, cancelar
+            </a>
+        </div>
+    </form>
+
+</div>
+
+{% endblock %}

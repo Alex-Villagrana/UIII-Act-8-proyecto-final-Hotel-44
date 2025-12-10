@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Clientes{% endblock %}
+
+{% block content %}
+
+<div class="admin-card" style="max-width: 1000px;">
+    
+    <div class="list-header">
+        <h1>Lista de Clientes</h1>
+        <a href="{% url 'cliente_create' %}" class="btn btn-edit">
+            + Añadir Cliente
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        {% if object_list %}
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th style="width: 80px;">ID</th> 
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th style="text-align: right;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cliente in object_list %}
+                        <tr>
+                            <td style="font-weight: bold; color: var(--purple-primary);">
+                                #{{ cliente.pk }}
+                            </td>
+                            
+                            <td>
+                                <a href="{% url 'cliente_detail' cliente.pk %}" class="table-link">
+                                    {{ cliente.nombre }}
+                                </a>
+                            </td>
+                            
+                            <td>{{ cliente.email|default:"-" }}</td>
+                            <td>{{ cliente.telefono|default:"-" }}</td>
+                            
+                            <td style="text-align: right;">
+                                <a href="{% url 'cliente_update' cliente.pk %}" class="btn btn-back" style="font-size: 0.8rem; padding: 5px 8px;">
+                                    Editar
+                                </a>
+                                <a href="{% url 'cliente_detail' cliente.pk %}" class="btn btn-edit" style="font-size: 0.8rem; padding: 5px 10px;">
+                                    Ver
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="empty-state">
+                <p>No hay clientes registrados todavía.</p>
+                <a href="{% url 'cliente_create' %}" class="btn btn-edit" style="margin-top: 10px;">
+                    Crear el primer cliente
+                </a>
+            </div>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}

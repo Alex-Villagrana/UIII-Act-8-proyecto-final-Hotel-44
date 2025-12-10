@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>{% block title %}Panel de Administración{% endblock %} | HotelManager</title>
+    
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+    <nav class="main-navbar">
+        <div class="nav-container">
+            
+            <a href="{% url 'index' %}" class="nav-brand">
+                🏨 GestorHotel
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="{% url 'reserva_list' %}">Reservas</a></li>
+                <li><a href="{% url 'habitacion_list' %}">Habitaciones</a></li>
+                <li><a href="{% url 'cliente_list' %}">Clientes</a></li>
+                <li><a href="{% url 'empleado_list' %}">Empleados</a></li>
+                <li><a href="{% url 'pago_list' %}">Pagos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 Sistema de Gestión Hotelera. Tu nombre y grupo .</p>
+    </footer>
+
+</body>
+</html>

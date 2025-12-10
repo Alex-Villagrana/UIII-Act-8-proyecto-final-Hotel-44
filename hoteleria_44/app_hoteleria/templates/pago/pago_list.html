@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Pagos{% endblock %}
+
+{% block content %}
+
+<div class="admin-card" style="max-width: 1000px;">
+    
+    <div class="list-header">
+        <h1>Lista de Pagos</h1>
+        <a href="{% url 'pago_create' %}" class="btn btn-edit">
+            + Registrar Pago
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        {% if object_list %}
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th style="width: 80px;">ID</th>
+                        <th>Reserva / Concepto</th>
+                        <th>Monto</th>
+                        <th>Método</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th style="text-align: right;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pago in object_list %}
+                        <tr>
+                            <td style="font-weight: bold; color: var(--purple-primary);">
+                                #{{ pago.id_pago }}
+                            </td>
+                            
+                            <td>
+                                <a href="{% url 'pago_detail' pago.pk %}" class="table-link">
+                                    {{ pago.reserva }}
+                                </a>
+                            </td>
+                            
+                            <td style="font-weight: 600;">${{ pago.monto }}</td>
+                            
+                            <td>{{ pago.metodo_pago }}</td>
+                            
+                            <td>{{ pago.fecha_pago|date:"d/m/Y" }}</td>
+                            
+                            <td>
+                                <span style="font-size: 0.9em;">{{ pago.estado }}</span>
+                            </td>
+                            
+                            <td style="text-align: right;">
+                                <a href="{% url 'pago_update' pago.pk %}" class="btn btn-back" style="font-size: 0.8rem; padding: 5px 8px;">
+                                    Editar
+                                </a>
+                                
+                                <a href="{% url 'pago_detail' pago.pk %}" class="btn btn-edit" style="font-size: 0.8rem; padding: 5px 10px;">
+                                    Ver
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="empty-state">
+                <p>No se han registrado pagos todavía.</p>
+                <a href="{% url 'pago_create' %}" class="btn btn-edit" style="margin-top: 10px;">
+                    Crear el primer pago
+                </a>
+            </div>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}

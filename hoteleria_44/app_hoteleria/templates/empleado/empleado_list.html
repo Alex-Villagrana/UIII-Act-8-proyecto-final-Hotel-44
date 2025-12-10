@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Empleados{% endblock %}
+
+{% block content %}
+
+<div class="admin-card" style="max-width: 1000px;">
+    
+    <div class="list-header">
+        <h1>Lista de Empleados</h1>
+        <a href="{% url 'empleado_create' %}" class="btn btn-edit">
+            + Añadir Empleado
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        {% if object_list %}
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th style="width: 80px;">ID</th>
+                        <th>Nombre</th>
+                        <th>Cargo</th>
+                        <th>Teléfono</th>
+                        <th style="text-align: right;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for empleado in object_list %}
+                        <tr>
+                            <td style="font-weight: bold; color: var(--purple-primary);">
+                                #{{ empleado.pk }}
+                            </td>
+                            
+                            <td>
+                                <a href="{% url 'empleado_detail' empleado.pk %}" class="table-link">
+                                    {{ empleado.nombre }}
+                                </a>
+                            </td>
+                            
+                            <td>
+                                <span style="font-weight: 500;">{{ empleado.cargo }}</span>
+                            </td>
+                            
+                            <td>{{ empleado.telefono|default:"-" }}</td>
+                            
+                            <td style="text-align: right;">
+                                <a href="{% url 'empleado_update' empleado.pk %}" class="btn btn-back" style="font-size: 0.8rem; padding: 5px 8px;">
+                                    Editar
+                                </a>
+                                <a href="{% url 'empleado_detail' empleado.pk %}" class="btn btn-edit" style="font-size: 0.8rem; padding: 5px 10px;">
+                                    Ver
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="empty-state">
+                <p>No hay empleados registrados en el sistema.</p>
+                <a href="{% url 'empleado_create' %}" class="btn btn-edit" style="margin-top: 10px;">
+                    Registrar el primer empleado
+                </a>
+            </div>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}

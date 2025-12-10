@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Detalles del Cliente{% endblock %}
+
+{% block content %}
+
+<div class="admin-card">
+    
+    <h1>{{ object.nombre }}</h1>
+
+    <div class="detail-info">
+        <p class="detail-row">
+            <strong>ID:</strong> #{{ object.pk }}
+        </p>
+
+        <p class="detail-row">
+            <strong>Teléfono:</strong> {{ object.telefono }}
+        </p>
+        <p class="detail-row">
+            <strong>Email:</strong> {{ object.email }}
+        </p>
+        <p class="detail-row">
+            <strong>Dirección:</strong> {{ object.direccion }}
+        </p>
+    </div>
+
+    <div class="action-buttons">
+        <a href="{% url 'cliente_update' object.pk %}" class="btn btn-edit">
+            Editar Cliente
+        </a>
+        
+        <a href="{% url 'cliente_delete' object.pk %}" class="btn btn-delete">
+            Eliminar
+        </a>
+
+        <a href="{% url 'cliente_list' %}" class="btn btn-back">
+            &larr; Volver a la lista
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}
